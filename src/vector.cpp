@@ -22,7 +22,7 @@ namespace vector{
 	}
 
 	VECT_FLOAT dist(vector A, vector B){
-		return sqrt((A.x-B.x)*(A.x-B.x)+(A.y-B.y)*(A.y-B.y)+(A.z-B.z)*(A.z-B.z));
+		return sqrt(std::abs(((A.x-B.x)*(A.x-B.x))+((A.y-B.y)*(A.y-B.y))+((A.z-B.z)*(A.z-B.z))));
 	}
 
 	vector normalize(vector A){

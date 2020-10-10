@@ -1,6 +1,6 @@
 #ifndef __VECTOR_H_INCLUDED__ //test if included
 #define __VECTOR_H_INCLUDED__ //mark as included
-#define VECT_FLOAT float
+#define VECT_FLOAT double
 
 namespace vector{
 
