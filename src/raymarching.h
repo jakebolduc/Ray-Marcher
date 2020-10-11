@@ -3,6 +3,11 @@
 
 #include "vector.h"
 
+#define MAX_DIST 200.0
+#define MAX_STEPS 1000
+#define SURFACE_DIST 0.01
+
+
 namespace raymarch{
 
 	class RaymarchObject{
@@ -27,13 +32,29 @@ namespace raymarch{
 	class sdfD: public RaymarchObject{};
 	class sdfMeta: public RaymarchObject{};
 
-	class RaymarchScene{
+
+
+	class RaymarchObjectLILI{
+		friend class RaymarchScene;
+		RaymarchObjectLILI *next = nullptr;
+		RaymarchObject *data = nullptr;
 	public:
+		void add(RaymarchObject *object);
+		RaymarchObject *index(int index);
+	};
+
+
+	class RaymarchScene{
 		//a linked list might be better...
-		RaymarchObject *objects;
+		RaymarchObjectLILI *objects = nullptr;
+		RaymarchObjectLILI *tail = nullptr;
+	public:
+		int glow;
+		void addObject(RaymarchObject *object);
 		VECT_FLOAT GetSceneDist(vector::vector point);
 		VECT_FLOAT GetObject(vector::vector point);
 		vector::vector raymarch(vector::vector ro, vector::vector rd);
+		int raymarchGlow(vector::vector ro, vector::vector rd);
 	};
 }
 
