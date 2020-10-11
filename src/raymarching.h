@@ -4,7 +4,7 @@
 #include "vector.h"
 
 #define MAX_DIST 200.0
-#define MAX_STEPS 1000
+#define MAX_STEPS 250
 #define SURFACE_DIST 0.01
 
 
@@ -14,6 +14,14 @@ namespace raymarch{
 	public:
 		virtual VECT_FLOAT GetDist(vector::vector point) =0;
 		virtual vector::vector GetColor(vector::vector point) =0;
+	};
+	class RaymarchObjectLILI{
+		friend class RaymarchScene;
+		RaymarchObjectLILI *next = nullptr;
+		RaymarchObject *data = nullptr;
+	public:
+		void add(RaymarchObject *object);
+		RaymarchObject *index(int index);
 	};
 
 	class sdfSphere: public RaymarchObject{
@@ -25,24 +33,13 @@ namespace raymarch{
 		vector::vector GetColor(vector::vector point);
 		sdfSphere(VECT_FLOAT r, vector::vector pos);
 	};
-
 	class sdfPlane: public RaymarchObject{};
+
 	class sdfU: public RaymarchObject{};
 	class sdfI: public RaymarchObject{};
 	class sdfD: public RaymarchObject{};
+
 	class sdfMeta: public RaymarchObject{};
-
-
-
-	class RaymarchObjectLILI{
-		friend class RaymarchScene;
-		RaymarchObjectLILI *next = nullptr;
-		RaymarchObject *data = nullptr;
-	public:
-		void add(RaymarchObject *object);
-		RaymarchObject *index(int index);
-	};
-
 
 	class RaymarchScene{
 		//a linked list might be better...

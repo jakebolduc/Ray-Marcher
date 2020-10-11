@@ -2,6 +2,17 @@
 #include "raymarching.h"
 
 namespace raymarch{
+// RaymarchObject
+
+// RaymarchObjectLILI
+	void RaymarchObjectLILI::add(RaymarchObject *object){
+		RaymarchObjectLILI * current = this;
+		while(next != nullptr){
+			current = current -> next;
+		}
+		current -> next = new RaymarchObjectLILI;
+		current -> next -> data = object;
+	}
 
 // sdfSphere
 	VECT_FLOAT sdfSphere::GetDist(vector::vector point){
@@ -16,15 +27,15 @@ namespace raymarch{
 		color = vector::set(1,1,1);
 	}
 
-// RaymarchObjectLILI
-	void RaymarchObjectLILI::add(RaymarchObject *object){
-		RaymarchObjectLILI * current = this;
-		while(next != nullptr){
-			current = current -> next;
-		}
-		current -> next = new RaymarchObjectLILI;
-		current -> next -> data = object;
-	}
+//sdfPlane
+
+//sdfU
+
+//sdfI
+
+//sdfD
+
+//sdfMeta
 
 // raymarch scene
 	void RaymarchScene::addObject(RaymarchObject *object){

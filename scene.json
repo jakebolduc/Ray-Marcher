@@ -1,0 +1,19 @@
+{
+	"render":{
+		"color":[0.2,0.8,1.0],
+		"size":[2000,2000],
+		"FOV":90
+	},
+	"scene":[
+		{
+			"type":"sdfSphere",
+			"radius":10,
+			"pos":[0,0,70]
+		},
+		{
+			"type":"sdfSphere",
+			"radius":10,
+			"pos":[15,0,70]
+		}
+	]
+}
