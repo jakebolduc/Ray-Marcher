@@ -8,12 +8,16 @@
 		{
 			"type":"sdfSphere",
 			"radius":10,
-			"pos":[0,0,70]
+			"pos":[-15,0,70]
 		},
 		{
 			"type":"sdfSphere",
-			"radius":10,
+			"radius":5,
 			"pos":[15,0,70]
+		},
+		{
+			"type":"sdfBox"
 		}
 	]
+
 }

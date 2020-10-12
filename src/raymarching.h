@@ -25,8 +25,8 @@ namespace raymarch{
 	};
 
 	class sdfSphere: public RaymarchObject{
-		vector::vector position;
-		VECT_FLOAT radius;
+		vector::vector position = {0,0,0};
+		VECT_FLOAT radius = 1;
 		vector::vector color;
 	public:
 		VECT_FLOAT GetDist(vector::vector point);

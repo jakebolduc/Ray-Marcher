@@ -5,6 +5,7 @@
 #include "nlohmann/json.hpp" // from https://github.com/nlohmann/json
 #include "vector.h"
 #include "raymarching.h"
+#include "json_def.h"
 
 using json = nlohmann::json;
 
@@ -18,13 +19,46 @@ void Vprint(vector::vector A){
 }
 
 
-int main(){
+int main(int argc, char* argv[]){
+
+	if(argc < 2){
+		std::cerr << "Usage: " << argv[0] << " FILE.json\n";
+		return 1;
+	}
 
 	int size[2] = {512,512};
-	int zoom = 256;
-	raymarch::RaymarchScene scene;
+	float FOV = 90.0;
+	float zoom = 256;
 
-	#include "scene.h"
+// load scene from json
+	json j;
+	try{
+		std::ifstream i(argv[1]);
+		i >> j;
+		i.close();
+	}
+	catch(json::exception & e){
+		std::cout << "invalid JSON\nerror: " << e.what() << "\n";
+		return 1;
+	}
+
+
+	//j.at("render").at("size").get_to(size);
+	//j.at("render").at("FOV").get_to(FOV);
+	//zoom = size[0]/2 * cos((FOV/2)*PI/180);
+	raymarch::RaymarchScene scene;
+	try{
+		scene = j.at("scene").get<raymarch::RaymarchScene>();
+	}
+	catch(json::exception & e){
+		std::cout << "invalid scene\nerror: " << e.what() << "\n";
+		return 1;
+	}
+
+
+
+
+
 
 	sf::RenderWindow window(sf::VideoMode(size[0],size[1]),"RayMarching");
 	window.setVerticalSyncEnabled(true);

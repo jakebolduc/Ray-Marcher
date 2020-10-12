@@ -3,7 +3,7 @@ LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 ODIR = build
 SRCDIR = src
 
-_DEPS = raymarching.h scene.h vector.h
+_DEPS = raymarching.h vector.h json_def.h
 DEPS = $(patsubst %,$(SRCDIR)/%,$(_DEPS))
 
 _OBJ = render.o vector.o raymarching.o
